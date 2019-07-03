@@ -1,0 +1,12 @@
+<svg width="1440" height="375" viewBox="0 0 1440 375" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Mask</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-6787 -2973)">
+<g id="Mask">
+<use xlink:href="#path0_fill" transform="translate(6690 2973)" fill="#313A51"/>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 22.5001 0C 22.5001 0 69.614 135.123 380.302 90.0818C 690.99 45.0409 855.286 -27.7153 1059.9 90.0818C 1264.52 207.879 1633 173.242 1633 173.242C 1633 173.242 1621.95 960.339 1593.05 955.474C 1564.15 950.609 0 950.609 0 950.609L 22.5001 0Z"/>
+</defs>
+</svg>
