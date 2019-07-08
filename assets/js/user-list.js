@@ -4,20 +4,19 @@ function userAddAction() {
     var userData = {
         t_user_type: $('[name="t_user_type"]').val(),
         t_nama: $('[name="t_nama"]').val(),
-        t_tempat_tgl_lahir: $('[name="t_tempat_tgl_lahir"]').val(),
+        t_tempat_lahir: $('[name="t_tempat_lahir"]').val(),
+        t_tgl_lahir: $('[name="t_tgl_lahir"]').val(),
         t_agama: $('[name="t_agama"]').val(),
         t_pekerjaan: $('[name="t_pekerjaan"]').val(),
         t_alamat: $('[name="t_alamat"]').val(),
-        t_gender: $('[name="t_gender"]:checked').val(),
-        t_username: $('[name="t_username"]').val(),
         t_email: $('[name="t_email"]').val(),
         t_password: $('[name="t_password"]').val()
     }
     console.log(userData);
-    var beforeSendAction = function () {
+    var beforeSendAction = function() {
         $("#addUser").text("Loading").attr('disabled', '');
     }
-    var successAction = function (response) {
+    var successAction = function(response) {
         if (response.status === true) {
             var message = response.message
             var dataAlert = {
@@ -40,7 +39,7 @@ function userAddAction() {
             openAlert(dataAlert);
         }
     }
-    var errorAction = function (response) {
+    var errorAction = function(response) {
         var message = response.responseJSON.message
         console.log(response)
         var dataAlert = {
@@ -65,7 +64,7 @@ function userAddAction() {
 }
 
 function AddUser() {
-    $("#addUser").on("click", function () {
+    $("#addUser").on("click", function() {
         userAddAction();
     })
 }
@@ -87,7 +86,7 @@ function editUserAction(t_id) {
         t_password: $('[name="t_password"]').val()
     }
 
-    var successAction = function (response) {
+    var successAction = function(response) {
         if (response.status === true) {
             var message = response.message
             var dataAlert = {
@@ -101,11 +100,11 @@ function editUserAction(t_id) {
         }
     }
 
-    var beforeSendAction = function () {
+    var beforeSendAction = function() {
         console.log('Loading Fetching..')
     }
 
-    var errorAction = function (response) {
+    var errorAction = function(response) {
         var message = response.responseJSON.message
         console.log(response);
         var dataAlert = {
@@ -130,7 +129,7 @@ function editUserAction(t_id) {
 }
 
 function editUser() {
-    $('#editUser').on("click", function () {
+    $('#editUser').on("click", function() {
         var t_id = $(this).attr("data-id");
         editUserAction(t_id);
         $(this).attr('disabled', '');
@@ -142,16 +141,16 @@ function userListShowAction() {
     var url = "api/warga";
     var data = {};
     var type = "GET";
-    var successAction = function (response) {
+    var successAction = function(response) {
         console.log(response);
         var status = response.status;
         var data = response.data;
         var htmlDOM = "";
-        var tableHeadArray = ["No", "Name", "TTL", "Agama", "Pekerjaan", "Alamat", "gender", "email", "Action"];
+        var tableHeadArray = ["No", "Nama", "TTL", "Agama", "Pekerjaan", "Alamat", "email", "Action"];
         var targetDOM = $("#userListShow");
 
         if (status === true) {
-            htmlDOM += "<table class='play-data-table table-hover'><thead class='bg-tabel'>";
+            htmlDOM += "<table class='play-data-table table-hover table table-border'><thead class='bg-tabel'>";
             htmlDOM += "<tr style='color:#222;text-align:center'>"
             for (var i = 0; i < tableHeadArray.length; i++) {
                 htmlDOM += "<th>" + tableHeadArray[i] + "</th>";
@@ -163,13 +162,12 @@ function userListShowAction() {
                 htmlDOM += "<tr class='editable-row' data-id='" + data[i].t_id + "'>";
                 htmlDOM += "<td class='text-center'>" + j + "</td>";
                 htmlDOM += "<td><span><div class='truncate'>" + data[i].t_nama + "</div></span></td>";
-                htmlDOM += "<td><span><div class='truncate'>" + data[i].t_tempat_tgl_lahir + "</div></span></td>";
+                htmlDOM += "<td><span><div class='truncate'>" + data[i].t_tempat_lahir + " , " + data[i].t_tgl_lahir + "</div></span></td>";
                 htmlDOM += "<td><span><div class='truncate'>" + data[i].t_agama + "</div></span></td>";
                 htmlDOM += "<td><span><div class='truncate'>" + data[i].t_pekerjaan + "</div></span></td>";
-                htmlDOM += "<td><span><div class='truncate'>" + data[i].t_alamat + "</div></span></td>";
-                htmlDOM += "<td><span><div class='truncate'>" + data[i].t_gender + "</div></span></td>";
+                htmlDOM += "<td><span><div class='truncate'>" + "VILLA MUTIARA GADING 2 BLOK B.1 NO. " + data[i].t_alamat + " RT.010/008, KEL.KARANGSATRIA. KEC.TAMBUN UTARA" + "</div></span></td>";
                 htmlDOM += "<td><span><div class='truncate'>" + data[i].t_email + "</div></span></td>";
-                htmlDOM += "<td><button id='deleteUSER' title='delete' class='btn btn-sm' data-id='"+data[i].t_id+"'>Delete</button></td>";
+                htmlDOM += "<td><button title='delete' class='btn btn-sm deleteUSER' data-id='" + data[i].t_id + "'>Delete</button></td>";
                 htmlDOM += "</tr>";
                 j++
             }
@@ -178,13 +176,15 @@ function userListShowAction() {
             $('.play-data-table').DataTable({
                 "paging": false,
                 "ordering": true,
+                "paging": true,
                 "info": false,
                 targets: [0, 1, 2],
-                render: function (data) {
+                render: function(data) {
                     return data.substr(0, 10);
                 }
             })
-            setTimeout(selectUser(), 500)
+            setTimeout(selectUser(), 500);
+            setTimeout(deleteUSER(), 500)
         } else {
             openAlert({
                 alertType: "error",
@@ -193,14 +193,14 @@ function userListShowAction() {
             });
         }
     };
-    var errorAction = function (response) {
+    var errorAction = function(response) {
         openAlert({
             alertType: "error",
             alertTitle: "Error",
             alertMessage: response.responseJSON.message
         });
     };
-    var beforeSendAction = function (response) {
+    var beforeSendAction = function(response) {
         console.log("loading fetch..");
     };
     ajaxSendJSON(url, type, data, beforeSendAction, successAction, errorAction);
@@ -214,14 +214,14 @@ function selectUserAction(t_id) {
     var url = "api/warga?t_id=" + t_id;
     var type = "GET";
     var data = {};
-    var successAction = function (response) {
+    var successAction = function(response) {
         console.log(response);
         // console.log('masuk')
         var status = response.status;
         if (status === true) {
             var data = response.data[0];
             console.log(data)
-            $.fn.hasValue = function () {
+            $.fn.hasValue = function() {
                 if (this.val() != "") {
                     this.siblings("label").addClass("has-val");
                 }
@@ -247,10 +247,10 @@ function selectUserAction(t_id) {
             console.log(response)
         }
     };
-    var beforeSendAction = function () {
+    var beforeSendAction = function() {
         console.log("loading");
     }
-    var errorAction = function (response) {
+    var errorAction = function(response) {
         console.log('error', response);
     };
 
@@ -258,7 +258,7 @@ function selectUserAction(t_id) {
 }
 
 function selectUser() {
-    $(".editable-row").on("dblclick", function () {
+    $(".editable-row").on("dblclick", function() {
         var t_id = $(this).attr('data-id');
         selectUserAction(t_id);
     })
@@ -267,8 +267,8 @@ function selectUser() {
 // reset form
 function resetFormAction() {
     data = {};
-    (function () {
-        $.fn.hasValue = function () {
+    (function() {
+        $.fn.hasValue = function() {
             this.siblings("label").removeClass("has-val");
         }
     })()
@@ -285,58 +285,58 @@ function resetFormAction() {
     $('#editUser').hide();
     $('#addUser').show();
 }
+
 function resetForm() {
-    $("#resetUser").on("click", function () {
+    $("#resetUser").on("click", function() {
         resetFormAction();
     })
 }
 
-function deleteUSERaction(t_id){
+function deleteUSERaction(t_id) {
     var type = "DELETE";
-    var params = "t_id";
-    var url = "api/warga?"+params+"="+t_id;
-    var successAction = function(response){
-      if(response.status === true){
+    var url = "api/warga?t_id=" + t_id;
+    var successAction = function(response) {
+        if (response.status === true) {
+            openAlert({
+                alertType: "success",
+                alertTitle: "Sukses!!",
+                alertMessage: "User berhasil dihapus"
+            });
+            userListShowAction($('#deleteUSER').val());
+        } else {
+            console.log(response);
+            openAlert({
+                alertType: "danger",
+                alertTitle: "Gagal!!",
+                alertMessage: "Tidak bisa menghapus, Cek konsol"
+            });
+        }
+    }
+    var beforeSendAction = function() {
+        console.log("Loading untuk penghapusan..")
+    }
+    var errorAction = function(response) {
+        console.log(response)
         openAlert({
-          alertType : "success",
-          alertTitle : "Sukses!!",
-          alertMessage : "User berhasil dihapus"
+            alertType: "danger",
+            alertTitle: "Gagal!!",
+            alertMessage: "Tidak bisa menghapus, Cek konsol"
         });
-        userListShowAction($('#deleteUSER').val());
-      } else {
-        console.log(response);
-        openAlert({
-          alertType : "danger",
-          alertTitle : "Gagal!!",
-          alertMessage : "Tidak bisa menghapus, Cek konsol"
-        });
-      }
     }
-    var beforeSendAction = function(){
-      console.log("Loading untuk penghapusan..")
-    }
-    var errorAction = function(response){
-      console.log(response)
-      openAlert({
-        alertType : "danger",
-        alertTitle : "Gagal!!",
-        alertMessage : "Tidak bisa menghapus, Cek konsol"
-      });
-    }
-  
-    ajaxSendJSON(url, type, {}, beforeSendAction, successAction, errorAction);
-  }
-  
-  function deleteUSER(){
-    $("#deleteUSER").on('click', function(){
-      var t_id = $(this).attr('data-id');
-      deleteUSERaction(t_id)
-    })
-  }
 
-$(document).ready(function () {
+    ajaxSendJSON(url, type, {}, beforeSendAction, successAction, errorAction);
+}
+
+function deleteUSER() {
+    $(".deleteUSER").on('click', function() {
+        var t_id = $(this).attr('data-id');
+        deleteUSERaction(t_id)
+    })
+}
+
+$(document).ready(function() {
     userListShow();
-    selectUser();
+    // selectUser();
     resetForm();
     AddUser();
     editUser();

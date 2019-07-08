@@ -34,19 +34,25 @@
 				<div class="nav-section">
 					<ul>
 						<li><a href="<?= base_url() ?>dashboard"><span class="logo nav-logo"><i class="fas fa-home"></i></span><span class="logo-text">Dashboard</span></a></li>
-						<li><a href="<?= base_url()?>warga"><span class="logo nav-logo"><i class="fas fa-users"></i></span><span class="logo-text">Data Warga</span></a></li>
-						<li class="has-submenu"><a href="#"><span class="logo nav-logo"><i class="fas fa-book"></i></span><span class="logo-text">Blog Post</span></a>
-							<ul class='submenu'>
-								<li><a href="<?= base_url() ?>post"><span class="logo nav-logo"><i class="fas fa-pencil-alt"></i></span><span class="logo-text">Add Post</span></a></li>
-								<li><a href="<?= base_url() ?>anime"><span class="logo nav-logo"><i class="fas fa-list"></i></span><span class="logo-text">Post List</span></a></li>
-							</ul>
-						</li>
-						<li class='has-submenu'><a href="#"><span class="logo nav-logo"><i class="fas fa-cog"></i></span><span class="logo-text">Setting</span></a>
-							<ul class="submenu">
-								<li><a href="<?= base_url() ?>adduser"><span class="logo nav-logo"><i class="fas fa-user-plus"></i></span><span class="logo-text">Add User</span></a></li>
-								<li><a href="<?= base_url() ?>userlist"><span class="logo nav-logo"><i class="fas fa-users"></i></span><span class="logo-text">List User</span></a></li>
-							</ul>
-						</li>
+							<li class='has-submenu'><a href="#"><span class="logo nav-logo"><i class="fas fa-images"></i></span><span class="logo-text">Galeri</span></a>
+								<ul class="submenu">
+								<li><a href="<?= base_url() ?>Galeri"><span class="logo nav-logo"><i class="fas fa-image"></i></span><span class="logo-text">Foto & Video</span></a></li>
+								<?php if ($this->session->userdata('userLogin')['t_user_type'] == 1 || ['t_user_type'] == 2) { ?>
+									<li><a href="<?= base_url() ?>addGaleri"><span class="logo nav-logo"><i class="fas fa-download"></i></span><span class="logo-text">Tambah Galeri</span></a></li>
+								<?php } ?>
+								</ul>
+							</li>
+
+						<?php if ($this->session->userdata('userLogin')['t_user_type'] == 1 || ['t_user_type'] == 2) { ?>
+						<li><a href="<?= base_url() ?>warga"><span class="logo nav-logo"><i class="fas fa-users"></i></span><span class="logo-text">Data Warga</span></a></li>
+							<li class='has-submenu'><a href="#"><span class="logo nav-logo"><i class="fas fa-cog"></i></span><span class="logo-text">Setting</span></a>
+								<ul class="submenu">
+									<li><a href="<?= base_url() ?>pengurus"><span class="logo nav-logo"><i class="fas fa-user-plus"></i></span><span class="logo-text">Tambah Pengurus</span></a></li>
+									<li><a href="<?= base_url() ?>userlist"><span class="logo nav-logo"><i class="fas fa-users"></i></span><span class="logo-text"></span>Daftar Pengurus</a></li>
+								</ul>
+							</li>
+						<?php } ?>
+						
 					</ul>
 				</div>
 			</div>
@@ -102,8 +108,8 @@
 									</a>
 
 									<div class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Halo, <?php echo $this->session->userdata('userLogin')['name'] ?>!</a></li>
-										<li><a class="dropdown-item" href="#">Profile</a></li>
+										<li><a class="dropdown-item" href="#">Halo, <?php echo $this->session->userdata('userLogin')['t_nama'] ?>!</a></li>
+										<li><a class="dropdown-item" href="<?= base_url() ?>profile">Profile</a></li>
 										<li><a class="dropdown-item" href="<?= base_url() ?>logout">Logout</a></li>
 									</div>
 								</span>

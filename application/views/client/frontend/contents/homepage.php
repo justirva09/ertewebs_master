@@ -32,27 +32,11 @@
 					<div class="row">
 						<?php
 						$i = 0;
-						while ($i < 2) { ?>
+						while ($i < 4) { ?>
 							<div class="c-geser col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
 								<div class="cp-card">
 									<div class="card-pic">
 										<img class="w-100" src="http://humas.malinau.go.id/images/berita/140573384556f22c63a1dae.desabersih.jpg" alt="galeri-card" title="galeri-card" />
-									</div>
-									<div class="card-body">
-										<h5 class="card-title">Galeri Card Title</h5>
-										<p class="card-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-									</div>
-								</div>
-							</div>
-							<?php $i++;
-						} ?>
-						<?php
-						$i = 0;
-						while ($i < 2) { ?>
-							<div class="c-geser col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-								<div class="cp-card">
-									<div class="card-pic">
-										<img class="w-100" src="https://rt01rw12.files.wordpress.com/2009/12/p1010290.jpg" alt="galeri-card" title="galeri-card" />
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">Galeri Card Title</h5>

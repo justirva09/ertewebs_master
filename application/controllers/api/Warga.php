@@ -48,56 +48,51 @@ class Warga extends REST_Controller
     {
         $t_user_type = $this->post('t_user_type');
         $t_name = $this->post('t_nama');
-        $t_tempat_ttl = $this->post('t_tempat_tgl_lahir');
+        $t_tempat_lahir = $this->post('t_tempat_lahir');
+        $t_tgl_lahir = $this->post('t_tgl_lahir');
         $t_agama = $this->post('t_agama');
         $t_pekerjaan = $this->post('t_pekerjaan');
         $t_alamat = $this->post('t_alamat');
-        $t_gender = $this->post('t_gender');
-        $t_username = $this->post('t_username');
         $t_email = $this->post('t_email');
         $t_password = $this->post('t_password');
 
         $checkEmail = $this->w_model->checkUserByEmail($t_email);
         if (count($checkEmail) == 0) {
-            $checkUsername = $this->w_model->checkUserByUsername($t_username);
-            if (count($checkUsername) == 0) {
-                $userData = [
-                    't_user_type' => $t_user_type,
-                    't_nama' => $t_name,
-                    't_tempat_tgl_lahir' => $t_tempat_ttl,
-                    't_agama' => $t_agama,
-                    't_pekerjaan' => $t_pekerjaan,
-                    't_alamat' => $t_alamat,
-                    't_gender' => $t_gender,
-                    't_username' => $t_username,
-                    't_email' => $t_email,
-                    't_password' => password_hash(base64_encode($t_password), PASSWORD_DEFAULT)
-                ];
-                $createUser = $this->w_model->createUser($userData);
+            $userData = [
+                't_user_type' => $t_user_type,
+                't_nama' => $t_name,
+                't_tempat_lahir' => $t_tempat_lahir,
+                't_tgl_lahir' => $t_tgl_lahir,
+                't_agama' => $t_agama,
+                't_pekerjaan' => $t_pekerjaan,
+                't_alamat' => $t_alamat,
+                't_email' => $t_email,
+                't_password' => password_hash(base64_encode($t_password), PASSWORD_DEFAULT)
+            ];
+            $createUser = $this->w_model->createUser($userData);
 
-                if ($createUser > 0) {
-                    $t_nama = $this->post("t_nama");
-                    $message = "Data User ".$t_nama." telah berhasil ditambahkan kedalam database";
-                    $this->response([
-                        'status' => true,
-                        'code' => 200,
-                        'message' => $message,
-                        'data' => $userData
-                    ], REST_Controller::HTTP_CREATED);
-                } else {
-                    $this->response([
-                        'status' => false,
-                        'code' => 400,
-                        'message' => 'FAILED CREATE USER!'
-                    ], REST_Controller::HTTP_BAD_REQUEST);
-                }
+            if ($createUser > 0) {
+                $t_nama = $this->post("t_nama");
+                $message = "Data User " . $t_nama . " telah berhasil ditambahkan kedalam database";
+                $this->response([
+                    'status' => true,
+                    'code' => 200,
+                    'message' => $message,
+                    'data' => $userData
+                ], REST_Controller::HTTP_OK);
             } else {
                 $this->response([
                     'status' => false,
                     'code' => 400,
-                    'message' => 'USER WITH EMAIL IS EXIST'
+                    'message' => 'FAILED CREATE USER!'
                 ], REST_Controller::HTTP_BAD_REQUEST);
             }
+        } else {
+            $this->response([
+                'status' => false,
+                'code' => 400,
+                'message' => 'USER WITH EMAIL IS EXIST'
+            ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
 
@@ -108,20 +103,19 @@ class Warga extends REST_Controller
         $userData = [
             't_user_type' => $this->put('t_user_type'),
             't_nama' => $this->put('t_nama'),
-            't_tempat_tgl_lahir' => $this->put('t_tempat_tgl_lahir'),
+            't_tempat_lahir' => $this->put('t_tempat_lahir'),
+            't_tgl_lahir' => $this->put('t_tgl_lahir'),
             't_agama' => $this->put('t_agama'),
             't_pekerjaan' => $this->put('t_pekerjaan'),
             't_alamat' => $this->put('t_alamat'),
-            't_gender' => $this->put('t_gender'),
-            't_username' => $this->put('t_username'),
             't_email' => $this->put('t_email'),
             't_password' => password_hash(base64_encode('t_password'), PASSWORD_DEFAULT)
         ];
         $update = $this->w_model->updateUser($userData, $t_id);
-        if($update > 0) {
+        if ($update > 0) {
 
             $t_nama = $this->put("t_nama");
-            $pesan = "Data Warga ".$t_nama." telah berhasil didit";      
+            $pesan = "Data Warga " . $t_nama . " telah berhasil didit";
             $this->response([
                 'status' => true,
                 'code' => 200,
@@ -138,7 +132,7 @@ class Warga extends REST_Controller
 
     public function index_delete()
     {
-        $t_id = $this->delete('t_id');
+        $t_id = $this->query('t_id');
         if ($t_id === NULL) {
             $this->response([
                 'statu' => false,
@@ -150,7 +144,7 @@ class Warga extends REST_Controller
                 $this->response([
                     'status' => true,
                     'message' => 'User Berhasil Dihapus!'
-                ], REST_Controller::HTTP_NO_CONTENT);
+                ], REST_Controller::HTTP_OK);
             } else {
                 $this->response([
                     'status' => false,

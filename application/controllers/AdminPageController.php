@@ -6,6 +6,13 @@ class AdminPageController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        $this->load->library('session');
+
+        $isLogin = $this->session->userdata("userLogin");
+        if (!isset($isLogin)) {
+            redirect('login');
+        }
     }
 
     public function dashboard_index()
@@ -26,7 +33,7 @@ class AdminPageController extends CI_Controller
 
     public function userlist_index()
     {
-        $data["page_title"] = 'User List';
+        $data["page_title"] = 'Pengurus';
         $this->load->view('template/head', $data);
         $this->load->view('admin/content/setting/Userlist');
         $this->load->view('template/footer', $data);
@@ -37,5 +44,18 @@ class AdminPageController extends CI_Controller
         $this->load->view('template/head', $data);
         $this->load->view('admin/content/warga/index');
         $this->load->view('template/footer', $data);
+    }
+    public function profile_index()
+    {
+        $data["page_title"] = 'Profile';
+        $this->load->view('template/head', $data);
+        $this->load->view('admin/content/profile/index');
+        $this->load->view('template/footer', $data);
+    }
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil keluar akun!</div>');
+        redirect('/');
     }
 }

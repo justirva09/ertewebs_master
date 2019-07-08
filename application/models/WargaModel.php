@@ -4,11 +4,14 @@ class WargaModel extends CI_Model
 
     public function getWarga($id = NULL)
     {
-        if ($id === NULL) {
-            return $this->db->get('t_warga')->result_array();
-        } else {
-            return $this->db->get_where('t_warga', ['t_id' => $id])->result_array();
+        $this->db->select('*');
+        $this->db->from('t_warga');
+        if ($id !== NULL) {
+            $this->db->where('id', $id);
         }
+        $this->db->where('t_user_type !=', 1);
+        $query = $this->db->get();
+        return $query->result_array();
     }
     public function updateUser($userData, $t_id)
     {
@@ -38,5 +41,22 @@ class WargaModel extends CI_Model
     {
         $query = $this->db->get_where('t_warga', ['t_username' => $t_username]);
         return $query->result_array();
+    }
+
+    public function checkAdmin($email)
+    {
+        // $query = $this->db->get_where('t_warga', ['t_email' => $email]);
+
+        // $this->db->select('*');
+        // $this->db->from('t_warga');
+        // $this->db->where('t_email', $email);
+        // $this->db->where('t_user_type', 1);
+        // $this->db->or_where_in('t_user_type', 2);
+
+        $q = $this->db->query("SELECT *  FROM t_warga
+            WHERE t_email = '$email'
+            AND ( t_user_type = 1 OR t_user_type = 2 OR t_user_type = 3)
+        ");
+        return $q->result_array();
     }
 }

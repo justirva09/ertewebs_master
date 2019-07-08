@@ -422,7 +422,7 @@ nav.header-nav .navigasi>li>.profile-dropdown>li a {
 }
 
 .cp-card {
-    padding: 14px;
+    /* padding: 14px; */
     position: relative;
     transition: .5s;
     border-radius: 3px;

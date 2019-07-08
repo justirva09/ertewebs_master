@@ -65,13 +65,17 @@ $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/
 $route["api/warga"] = "api/Warga";
 $route["api/warga/createUser"] = "api/warga/createUser";
 
-//ADMIN VIEW ROUTES
+//Login
+$route['admin'] = 'Login';
+$route['logout'] = 'AdminPageController/logout';
+
+//PANEL VIEW ROUTES
 $route['dashboard'] = 'AdminPageController/dashboard_index';
 $route['post'] = "AdminPageController/blog_index";
 $route['warga'] = "AdminPageController/warga_index";
-$route['userlist'] = "AdminPageController/userlist_index";
+$route['pengurus'] = "AdminPageController/userlist_index";
+$route['profile'] = "AdminPageController/profile_index";
 
-//CLIENT VIEW ROUTES
-
+//CLIENT WEB VIEW ROUTES
 $route['galeri'] = 'ClientPageController/galeri_index';
 $route['artikel'] = 'ClientPageController/single_index';
