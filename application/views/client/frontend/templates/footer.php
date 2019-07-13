@@ -25,11 +25,7 @@
                     <ul>
                         <li><i class="fas fa-user"></i> Pengurus</li>
                         <li><i class="fas fa-phone"></i> 0895334904784</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Jl. Jalan RT No.10, Sumur Batu, kota Bekasi, Jawa Barat</li>
-                        <li>
-                            <a class="social-icon ig" href="#"><i class="fab fa-instagram fa-3x"></i></a>
-                            <a class="social-icon fb" href="#"><i class="fab fa-facebook-square fa-3x"></i></a>
-                        </li>
+                        <li><i class="fas fa-map-marker-alt"></i> VILLA MUTIARA GADING 2 BLOK B.1 RT.010/008, KEL.KARANGSATRIA. KEC.TAMBUN UTARA</li>
                     </ul>
                 </div>
             </div>

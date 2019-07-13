@@ -64,6 +64,7 @@ $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/
 //RESTFULL API ROUTES
 $route["api/warga"] = "api/Warga";
 $route["api/warga/createUser"] = "api/warga/createUser";
+$route["api/galeri"] = "api/galeri";
 
 //Login
 $route['admin'] = 'Login';
@@ -75,6 +76,7 @@ $route['post'] = "AdminPageController/blog_index";
 $route['warga'] = "AdminPageController/warga_index";
 $route['pengurus'] = "AdminPageController/userlist_index";
 $route['profile'] = "AdminPageController/profile_index";
+$route['galeriPanel'] = "AdminPageController/galeri_index";
 
 //CLIENT WEB VIEW ROUTES
 $route['galeri'] = 'ClientPageController/galeri_index';

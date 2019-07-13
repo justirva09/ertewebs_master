@@ -23,10 +23,6 @@
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="t_user_type" value="" />
-                                    <label>User Type<label>
-                                </div>
-                                <div class="form-group">
                                     <input type="text" class="form-control" name="t_nama" value="" />
                                     <label>Nama</label>
                                 </div>
@@ -54,20 +50,26 @@
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="t_email" value="" />
+                                            <input type="email" class="form-control" name="t_email" value="" />
                                             <label>email</label>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="t_password" value="" />
+                                            <input type="password" class="form-control" name="t_password" value="" />
                                             <label>password</label>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-12">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="t_alamat" value="" />
-                                            <label>alamat</label>
+                                            <label>No Rumah</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="t_user_type" value="" />
+                                            <label>User Type<label>
                                         </div>
                                     </div>
                                 </div>

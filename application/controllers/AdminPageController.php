@@ -52,6 +52,13 @@ class AdminPageController extends CI_Controller
         $this->load->view('admin/content/profile/index');
         $this->load->view('template/footer', $data);
     }
+    public function galeri_index()
+    {
+        $data["page_title"] = 'Galeri';
+        $this->load->view('template/head', $data);
+        $this->load->view('admin/content/galeri/index');
+        $this->load->view('template/footer', $data);
+    }
     public function logout()
     {
         $this->session->sess_destroy();

@@ -76,12 +76,11 @@ function editUserAction(t_id) {
         t_id: t_id,
         t_user_type: $('[name="t_user_type"]').val(),
         t_nama: $('[name="t_nama"]').val(),
-        t_tempat_tgl_lahir: $('[name="t_tempat_tgl_lahir"]').val(),
+        t_tempat_lahir: $('[name="t_tempat_lahir"]').val(),
+        t_tgl_lahir: $('[name="t_tgl_lahir"]').val(),
         t_agama: $('[name="t_agama"]').val(),
         t_pekerjaan: $('[name="t_pekerjaan"]').val(),
         t_alamat: $('[name="t_alamat"]').val(),
-        t_gender: $('[name="t_gender"]:checked').val(),
-        t_username: $('[name="t_username"]').val(),
         t_email: $('[name="t_email"]').val(),
         t_password: $('[name="t_password"]').val()
     }
@@ -229,12 +228,11 @@ function selectUserAction(t_id) {
             $("[name='t_id']").val(data.t_id).hasValue();
             $('[name="t_user_type"]').val(data.t_user_type).hasValue();
             $('[name="t_nama"]').val(data.t_nama).hasValue();
-            $('[name="t_tempat_tgl_lahir"]').val(data.t_tempat_tgl_lahir).hasValue();
+            $('[name="t_tempat_lahir"]').val(data.t_tempat_lahir).hasValue();
+            $('[name="t_tgl_lahir"]').val(data.t_tgl_lahir).hasValue();
             $('[name="t_agama"]').val(data.t_agama).hasValue();
             $('[name="t_pekerjaan"]').val(data.t_pekerjaan).hasValue();
             $('[name="t_alamat"]').val(data.t_alamat).hasValue();
-            $('[name="t_gender"]').val(data.t_gender).hasValue();
-            $('[name="t_username"]').val(data.t_username).hasValue();
             $('[name="t_email"]').val(data.t_email).hasValue();
             $('[name="t_password"]').val(data.t_password).hasValue();
             $('#editUser').attr('data-id', t_id).show().removeClass('d-none');
@@ -274,12 +272,11 @@ function resetFormAction() {
     })()
     $('[name="t_user_type"]').val(data.t_user_type).hasValue();
     $('[name="t_nama"]').val(data.t_nama).hasValue();
-    $('[name="t_tempat_tgl_lahir"]').val(data.t_tempat_tgl_lahir).hasValue();
+    $('[name="t_tempat_lahir"]').val(data.t_tempat_lahir).hasValue();
+    $('[name="t_tgl_lahir"]').val(data.t_tgl_lahir).hasValue();
     $('[name="t_agama"]').val(data.t_agama).hasValue();
     $('[name="t_pekerjaan"]').val(data.t_pekerjaan).hasValue();
     $('[name="t_alamat"]').val(data.t_alamat).hasValue();
-    $('[name="t_gender"]').val(data.t_gender).hasValue();
-    $('[name="t_username"]').val(data.t_username).hasValue();
     $('[name="t_email"]').val(data.t_email).hasValue();
     $('[name="t_password"]').val(data.t_password).hasValue();
     $('#editUser').hide();
@@ -329,14 +326,21 @@ function deleteUSERaction(t_id) {
 
 function deleteUSER() {
     $(".deleteUSER").on('click', function() {
-        var t_id = $(this).attr('data-id');
-        deleteUSERaction(t_id)
+        // console.log("clik")
+        var t_id = $(this).attr("data-id");
+        var a = confirm("Yakin Dihapus ?");
+        if (a === true) {
+            deleteUSERaction(t_id);
+        } else {
+            return false;
+        }
+
     })
 }
 
 $(document).ready(function() {
     userListShow();
-    // selectUser();
+    selectUser();
     resetForm();
     AddUser();
     editUser();

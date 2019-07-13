@@ -68,3 +68,26 @@
 		</div>
 	</div>
 </section>
+
+<script>
+
+function galeriInstagramAction() {
+    var url = "https://api.instagram.com/v1/users/self/media/recent?access_token=5849738439.e078e31.f3f6838a1b804a679bd73677a08f799f";
+    var type = "GET";
+    var data = {};
+
+    var successAction = function(response) {
+        console.log("Fetch Instagram", response);
+    }
+    ajaxSendJSON(url, type, data, successAction);
+}
+
+function galeriInstagram() {
+    galeriInstagramAction();
+}
+
+
+$(document).ready(function() {
+galeriInstagram();
+});
+</script>

@@ -7,7 +7,7 @@ class WargaModel extends CI_Model
         $this->db->select('*');
         $this->db->from('t_warga');
         if ($id !== NULL) {
-            $this->db->where('id', $id);
+            $this->db->where('t_id', $id);
         }
         $this->db->where('t_user_type !=', 1);
         $query = $this->db->get();
