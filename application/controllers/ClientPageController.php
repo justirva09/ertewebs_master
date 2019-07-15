@@ -31,7 +31,12 @@ class ClientPageController extends CI_Controller {
         $this->load->view('client/frontend/contents/single-page', $data);
         $this->load->view('client/frontend/templates/footer', $data);
     }
-    
+    public function forum_index() {
+        $data["page_title"] = 'Forum - Website Rukun Tetangga';
+        $this->load->view('client/frontend/templates/head', $data);
+        $this->load->view('client/frontend/contents/forum', $data);
+        $this->load->view('client/frontend/templates/footer', $data);
+    }
 
     //   public function clientLogout(){
 	// 	$this->session->sess_destroy();

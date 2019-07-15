@@ -4,7 +4,7 @@
         <ul>
             <li><a href="dashboard">Home</a></li>
             /
-            <li class="current"><a href="#">Pengurus</a></li>
+            <li class="current"><a href="#">User</a></li>
         </ul>
     </div>
 </div>
@@ -16,7 +16,7 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-8">
             <div class="flat-card mb-4">
                 <div class="flat-card-header">
-                    <h4 class="flat-card-title">Tambah Pengurus</h4>
+                    <h4 class="flat-card-title">Tambah User</h4>
                 </div>
                 <div class="flat-card-body">
                     <div>
@@ -171,7 +171,7 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="flat-card">
                 <div class="flat-card-header" data-toggle="collapse" data-target="#userListBody">
-                    <h4 class="flat-card-title">Daftar Pengurus</h4>
+                    <h4 class="flat-card-title">Daftar User</h4>
                 </div>
                 <div id="userListBody" class="collapse show">
                     <div class="flat-card-body">

@@ -19,8 +19,13 @@
                     <h4 class="flat-card-title">Galeri</h4>
                 </div>
                 <div class="flat-card-body">
-                    <div id="showBTN" class="form-group">
-
+                    <div class="row">
+                        <div id="showBTN" class="form-group ml-2">
+                            <!--Append Button Here!-->
+                        </div>
+                        <div id="showVideo" class="form-group ml-2">
+                            <!--Append Button Here!-->
+                        </div>
                     </div>
                     <div id="galeriShow">
                         <!--APPEND DATA HERE!-->
@@ -34,7 +39,7 @@
                 </div>
             </div>
 
-            <!-- Modal -->
+            <!-- Modal Photos -->
             <div class="modal fade" id="modalGaleri" tabindex="-1" role="dialog" aria-labelledby="modalGaleriLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -65,6 +70,39 @@
                     </div>
                 </div>
             </div>
+            <link href="https://cdn.plyr.io/3.2.0/plyr.css" rel="stylesheet">
+            <!-- Modal Video-->
+            <div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="modalVideoLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add New Video</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <video class='js-player' poster="http://www.oneokrock.com/wp-content/themes/oor_pc/images/common/ogimage.png" controls playsinline>
+                                    <source src="https://firebasestorage.googleapis.com/v0/b/project-clone.appspot.com/o/videoplayback%20(1).mp4?alt=media&token=61856584-b430-4eb2-b6e8-1e92bb7b587f" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="g_title" value="" />
+                                <label>Title</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea style="resize:none" class="form-control" name="g_desc"></textarea>
+                                <label>Description</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-pertama">Add Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <style>
                 .item-action .edit,
                 .delete {
@@ -80,4 +118,9 @@
                 }
             </style>
             <!-- content -->
+            <script src="https://cdn.plyr.io/3.2.0/plyr.js"></script>
+            <script>
+                /*<![CDATA[*/
+                const players = Array.from(document.querySelectorAll('.js-player')).map(player => new Plyr(player)); /*]]>*/
+            </script>
             <script src="assets/js/galeri.js"></script>

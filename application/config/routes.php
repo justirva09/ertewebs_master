@@ -81,3 +81,4 @@ $route['galeriPanel'] = "AdminPageController/galeri_index";
 //CLIENT WEB VIEW ROUTES
 $route['galeri'] = 'ClientPageController/galeri_index';
 $route['artikel'] = 'ClientPageController/single_index';
+$route['forum'] = 'ClientPageController/forum_index';

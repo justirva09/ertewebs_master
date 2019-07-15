@@ -40,6 +40,7 @@
 							<li class=""><a href="<?= base_url() ?>">Home</a></li>
 							<li class=""><a href="<?= base_url() ?>galeri">Galeri</a></li>
 							<li class=""><a href="<?= base_url() ?>artikel">Blog</a></li>
+							<li class=""><a target="blank" href="http://forumrt.chatango.com/">Forum</a></li>
 							<?php
 							$userLogin = $this->session->userdata('userLogin');
 							// print_r($userLogin);

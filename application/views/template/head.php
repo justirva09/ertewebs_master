@@ -36,9 +36,8 @@
 						<li><a href="<?= base_url() ?>dashboard"><span class="logo nav-logo"><i class="fas fa-home"></i></span><span class="logo-text">Dashboard</span></a></li>
 							<li class='has-submenu'><a href="#"><span class="logo nav-logo"><i class="fas fa-images"></i></span><span class="logo-text">Galeri</span></a>
 								<ul class="submenu">
-								<li><a href="<?= base_url() ?>galeriPanel"><span class="logo nav-logo"><i class="fas fa-image"></i></span><span class="logo-text">Foto & Video</span></a></li>
-								<?php if ($this->session->userdata('userLogin')['t_user_type'] == 1 || ['t_user_type'] == 2) { ?>
-									<li><a href="<?= base_url() ?>addGaleri"><span class="logo nav-logo"><i class="fas fa-download"></i></span><span class="logo-text">Tambah Galeri</span></a></li>
+									<?php if ($this->session->userdata('userLogin')['t_user_type'] == 1 || ['t_user_type'] == 2) { ?>
+										<li><a href="<?= base_url() ?>galeriPanel"><span class="logo nav-logo"><i class="fas fa-image"></i></span><span class="logo-text">Add Galeri</span></a></li>
 								<?php } ?>
 								</ul>
 							</li>

@@ -52,7 +52,7 @@
 							<div id="" class="c-geser col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
 								<div class="cp-card">
 									<div class="card-pic">
-										<img class="w-100" src="http://humas.malinau.go.id/images/berita/140573384556f22c63a1dae.desabersih.jpg" alt="galeri-card" title="galeri-card" />
+										<img class="w-100" src="" alt="galeri-card" title="galeri-card" />
 									</div>
 									<div class="card-body">
 										<h5 class="card-title"><a href="#">TEST</a></h5>

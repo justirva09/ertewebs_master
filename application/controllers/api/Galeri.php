@@ -42,6 +42,44 @@ class Galeri extends REST_Controller
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
+    public function upload_img()
+    {
+        $file_name = $this->post('warga_galeri_file');
+        $file_data = $this->post('galeri_file');
+        $file_name = "$file_name";
+        $file = $_FILES['galeri_file'];
+
+        $upload_dir = '/assets/galeri';
+        $config['upload_path'] = $upload_dir;
+        $config['file_name'] = $file_name;
+        $config['allowed_types'] = 'jpg|jpeg|png|gif|svg';
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('galeri_file')) { 
+            $errorData = [
+                'file_name' => $file_name,
+                'file' => $file,
+                'file2' => $file_name
+            ];
+            $error = array('error' => $this->upload->display_errors());
+            $this->response([
+                'status' => false,
+                'code' => 400,
+                'message' => $error,
+                'data' => $errorData
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        } else {
+            $uploadData = $this->upload->data();
+            $this->response([
+                'status' => true,
+                'code' => 200,
+                'message' => 'Success Insert Photos!',
+                'data' => $uploadData
+            ], REST_Controller::HTTP_OK);
+        }
+    }
+
+
 
     public function index_post()
     {

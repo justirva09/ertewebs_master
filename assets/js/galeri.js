@@ -1,6 +1,6 @@
 function galeriInstagramAction() {
     var url = "https://api.instagram.com/v1/users/self/media/recent?access_token=5849738439.e078e31.f3f6838a1b804a679bd73677a08f799f";
-    // var type = "GET";
+    var type = "GET";
     var data = {};
 
     var successAction = function(response) {
@@ -23,8 +23,12 @@ function galeriShowAction() {
         var status = response.status;
         var data = response.data;
         var btnDOM = "";
+        var btnVideo = "";
+        var targetBtnVideo = $("#showVideo");
         var targetBTN = $("#showBTN");
+        btnVideo += "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalVideo'>Add Videos</button>";
         btnDOM += "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modalGaleri'>Add Photos</button>";
+
         var htmlDOM = "";
         var targetDOM = $("#galeriShow");
         if (status == true) {
@@ -41,6 +45,7 @@ function galeriShowAction() {
             targetDOM.html(htmlDOM);
         }
         targetBTN.html(btnDOM);
+        targetBtnVideo.html(btnVideo);
     };
     var errorAction = function(response) {
         openAlert({
@@ -82,5 +87,6 @@ function addGaleri() {
 
 $(document).ready(function() {
     galeriShow();
+    galeriInstagram();
     // addGaleri();
 });
